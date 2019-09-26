@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<title>Proje Ekleme</title>
+</head>
+<body>
+<input type="submit" onClick="parent.location='http://localhost:8080/'" value='Ana Sayfa' class="btn btn-warning">
+	<div class="form-group">
+		<form th:action="@{/proje-ekle}" method="get">
+<div class="sirala">
+				 <input type="hidden" id="id" name="id" autofocus="autofocus" th:value="${calisan.id}">
+				 <label for="proje_adi">Proje Adı:</label> 
+				 <input type="text" id="proje_adi" name="proje_adi" autofocus="autofocus" class="form-control" required minlength="1">
+				 <label for="proje_adi">Proje Bitiş Tarihi:</label> 
+				 <input	type="date" name="tarih_son" id="tarih_son" class="form-control" required minlength="1">
+			
+		</div>		 
+
+	<div class="col-sm-6">
+	<div class="sirala">
+		<label>Proje Seviyesi:</label><br />
+		
+		<div class="radio radio-danger">
+
+
+			<div class="radio radio-info radio-inline">
+				<input type="radio" id="inlineRadio1" value="Zor"
+					name="radioInline" checked=""> <label for="inlineRadio1">
+					Zor </label>
+			</div>
+			<div class="radio radio-info radio-inline">
+				<input type="radio" id="inlineRadio2" value="Orta"
+					name="radioInline"> <label for="inlineRadio2">
+					Orta </label>
+			</div>
+			<div class="radio radio-info radio-inline">
+				<input type="radio" id="inlineRadio3" value="Kolay"
+					name="radioInline"> <label for="inlineRadio3">
+					Basit </label>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="sirala">
+	<label>Proje Sınıfı:</label><br />
+	<select name="sinif">
+		<option th:each="calisan : ${gorevler}" th:text="${calisan}" th:value="${calisan}" ></option>
+		
+		
+	</select>
+	</div>
+	<div class="sirala">
+	<input type="submit" value="Ekle" class="btn btn-outline-primary">
+	</div>
+		</form>
+	</div>
+
+
+
+
+	
+
+	<style type="text/css">
+.radio {
+	padding-left: 20px;
+}
+.btn-group{margin-left:200px; margin-bottom:100px;}
+
+.radio label {
+	display: inline-block;
+	position: relative;
+	padding-left: 5px;
+}
+
+.sirala{float:left;
+Margin-left:20px;}
+
+
+
+.radio label::before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	width: 17px;
+	height: 17px;
+	left: 0;
+	margin-left: -20px;
+	border: 1px solid #cccccc;
+	border-radius: 50%;
+	background-color: #fff;
+	-webkit-transition: border 0.15s ease-in-out;
+	-o-transition: border 0.15s ease-in-out;
+	transition: border 0.15s ease-in-out;
+}
+
+.radio label::after {
+	display: inline-block;
+	position: absolute;
+	content: " ";
+	width: 11px;
+	height: 11px;
+	left: 3px;
+	top: 3px;
+	margin-left: -20px;
+	border-radius: 50%;
+	background-color: #555555;
+	-webkit-transform: scale(0, 0);
+	-ms-transform: scale(0, 0);
+	-o-transform: scale(0, 0);
+	transform: scale(0, 0);
+	-webkit-transition: -webkit-transform 0.1s
+		cubic-bezier(0.8, -0.33, 0.2, 1.33);
+	-moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+	-o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+	transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+}
+
+.radio input[type="radio"] {
+	opacity: 0;
+}
+
+.radio input[type="radio"]:focus+label::before {
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+
+.radio input[type="radio"]:checked+label::after {
+	-webkit-transform: scale(1, 1);
+	-ms-transform: scale(1, 1);
+	-o-transform: scale(1, 1);
+	transform: scale(1, 1);
+}
+
+.radio input[type="radio"]:disabled+label {
+	opacity: 0.65;
+}
+
+.radio input[type="radio"]:disabled+label::before {
+	cursor: not-allowed;
+}
+
+.radio.radio-inline {
+	margin-top: 0;
+}
+
+.radio-primary input[type="radio"]+label::after {
+	background-color: #428bca;
+}
+
+.radio-primary input[type="radio"]:checked+label::before {
+	border-color: #428bca;
+}
+
+.radio-primary input[type="radio"]:checked+label::after {
+	background-color: #428bca;
+}
+
+.radio-danger input[type="radio"]+label::after {
+	background-color: #d9534f;
+}
+
+.radio-danger input[type="radio"]:checked+label::before {
+	border-color: #d9534f;
+}
+
+.radio-danger input[type="radio"]:checked+label::after {
+	background-color: #d9534f;
+}
+
+.radio-info input[type="radio"]+label::after {
+	background-color: #5bc0de;
+}
+
+.radio-info input[type="radio"]:checked+label::before {
+	border-color: #5bc0de;
+}
+
+.radio-info input[type="radio"]:checked+label::after {
+	background-color: #5bc0de;
+}
+
+.radio-warning input[type="radio"]+label::after {
+	background-color: #f0ad4e;
+}
+
+.radio-warning input[type="radio"]:checked+label::before {
+	border-color: #f0ad4e;
+}
+
+.radio-warning input[type="radio"]:checked+label::after {
+	background-color: #f0ad4e;
+}
+
+.radio-success input[type="radio"]+label::after {
+	background-color: #5cb85c;
+}
+
+.radio-success input[type="radio"]:checked+label::before {
+	border-color: #5cb85c;
+}
+
+.radio-success input[type="radio"]:checked+label::after {
+	background-color: #5cb85c;
+}
+
+</style>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+</html>
