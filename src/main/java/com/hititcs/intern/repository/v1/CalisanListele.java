@@ -1,4 +1,4 @@
-package com.hititcs.intern.repository;
+package com.hititcs.intern.repository.v1;
 
 import java.util.List;
 import java.util.Map;

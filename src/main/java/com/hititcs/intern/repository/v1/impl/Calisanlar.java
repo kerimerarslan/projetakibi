@@ -1,4 +1,4 @@
-package com.hititcs.intern.repository.impl;
+package com.hititcs.intern.repository.v1.impl;
  
 
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.hititcs.intern.repository.ICalisanlar;
+import com.hititcs.intern.repository.v1.ICalisanlar;
 
 @Repository
 public class Calisanlar implements ICalisanlar {

@@ -1,4 +1,4 @@
-package com.hititcs.intern.repository;
+package com.hititcs.intern.repository.v1;
 
 public interface CalisanGuncelle {
 	public void sil(int id);

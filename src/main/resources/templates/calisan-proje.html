@@ -32,7 +32,7 @@
 				<td th:text="${proje.derece}"></td>
 				<td th:text="${proje.sinif}"></td>
 				<td><a th:href="@{/projeGuncelle?id=} + ${proje.id}" class="btn btn-warning">Güncelle</a></td>
-				<td><a th:href="@{/proje-sil?silp=} + ${proje.id}" class="btn btn-danger">Sil</a></td>
+				<td><a th:href="@{/proje-sil?silp=} + ${proje.id} + @{&calisan_id=}+ ${proje.calisan.id}" class="btn btn-danger">Sil</a></td>
 			</tr>
 		</table>
 		

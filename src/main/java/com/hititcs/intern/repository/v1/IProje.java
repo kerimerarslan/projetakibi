@@ -1,9 +1,10 @@
-package com.hititcs.intern.repository;
+package com.hititcs.intern.repository.v1;
 
 import java.util.List;
 import java.util.Map;
 
 public interface IProje {
+	
 
 	Map<String, Object> getir(int idsi);
 
@@ -15,7 +16,7 @@ public interface IProje {
 
 	void sil(int idsi);
 
-	void guncelle(int idsi, String ad);
+	void guncelle(int idsi, String ad, String tarih, String derece, String sinif);
 
 	Map<String, Object> proje_getir(int idsi);
 

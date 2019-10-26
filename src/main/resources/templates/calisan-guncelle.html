@@ -14,13 +14,13 @@
 
 <input type="hidden" id="id" name="id" autofocus="autofocus" th:value="${calisan.id}">
 <label for="ad">Ad:</label>
-	<input type="text" id="ad" name="ad" autofocus="autofocus" th:value="${calisan.ad}" class="form-control">
+	<input type="text" id="ad" name="ad" autofocus="autofocus" th:value="${calisan.ad}" class="form-control" required minlength="1">
 <br />
 <label for="soyad">Soyad:</label>
-	<input type="text" id="soyad" name="soyad" autofocus="autofocus" th:value="${calisan.soyad}" class="form-control">
+	<input type="text" id="soyad" name="soyad" autofocus="autofocus" th:value="${calisan.soyad}" class="form-control" required minlength="1">
 <br />
 <label for="email">Email:</label>
-	<input type="text" id="email" name="email" autofocus="autofocus" th:value="${calisan.email}" class="form-control">
+	<input type="email" id="email" name="email" autofocus="autofocus" th:value="${calisan.email}" class="form-control" required minlength="1">
 	
 	<input type="submit" class="btn benimButonum" value="Ekle">
 

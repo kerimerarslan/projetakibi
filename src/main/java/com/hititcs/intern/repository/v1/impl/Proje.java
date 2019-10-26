@@ -1,4 +1,4 @@
-package com.hititcs.intern.repository.impl;
+package com.hititcs.intern.repository.v1.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -7,14 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.hititcs.intern.repository.IProje;
+import com.hititcs.intern.repository.v1.IProje;
 
 @Repository
 public class Proje implements IProje {
-
+	
 	@Autowired
 	JdbcTemplate template;
 
+	
 	
 	public List<Map<String, Object>> projeListele(int id) {
 
@@ -37,9 +38,9 @@ public class Proje implements IProje {
 
 	}
 
-	public void guncelle(int id, String proje_1) {
+	public void guncelle(int id, String proje_1, String tarih_son, String derece, String sinif) {
 
-		template.update("update proje SET proje_1=? where id=?", proje_1, id);
+		template.update("update proje SET proje_1=?, tarih_son=?, derece=?, sinif=? where id=?", proje_1,tarih_son,derece,sinif, id);
 	}
 
 	public void projeEkle(int idsi, String ad, String derece, String sinif, String tarih) {
@@ -59,6 +60,7 @@ public class Proje implements IProje {
 		
 		
 	}
+	
 
 
 

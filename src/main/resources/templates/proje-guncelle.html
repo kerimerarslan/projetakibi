@@ -9,46 +9,62 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="form-group">
-<form th:action="@{/proje-guncelle}" method="get">
+	<div class="form-group">
+		<form th:action="@{/proje-guncelle}" method="get">
+			<div class="sirala">
+				<input type="hidden" id="calisan_id" name="calisan_id"
+					autofocus="autofocus" th:value="${projeler.calisan.id}"> <input
+					type="hidden" id="id" name="id" autofocus="autofocus"
+					th:value="${projeler.id}"> <label for="ad">Proje
+					Adı:</label> <input type="text" id="ad" name="ad" autofocus="autofocus"
+					th:value="${projeler.proje_1}" class="form-control"> <label
+					for="proje_adi">Proje Bitiş Tarihi:</label> <input type="date"
+					name="tarih_son" id="tarih_son" class="form-control" required
+					minlength="1" th:value="${projeler.tarih_son}">
 
-<input type="hidden" id="id" name="id" autofocus="autofocus" th:value="${projeler.id}">
-<label for="ad" >Proje Adı:</label>
-	<input type="text" id="ad" name="ad" autofocus="autofocus"  th:value="${projeler.proje_1}" class="form-control">
-	<input type="submit" class="btn benimButonum" value="Güncelle">
-	
+			</div>
+			<div class="col-sm-6">
+				<div class="sirala">
+					<label>Proje Seviyesi:</label><br />
 
-</form>
-</div>
+					<div class="radio radio-danger">
 
-  <div class="funkyradio">
-        <div class="funkyradio-default">
-            <input type="radio" name="radio" id="radio1" />
-            <label for="radio1">First Option default</label>
-        </div>
-        <div class="funkyradio-primary">
-            <input type="radio" name="radio" id="radio2" checked/>
-            <label for="radio2">Second Option primary</label>
-        </div>
-        <div class="funkyradio-success">
-            <input type="radio" name="radio" id="radio3" />
-            <label for="radio3">Third Option success</label>
-        </div>
-        <div class="funkyradio-danger">
-            <input type="radio" name="radio" id="radio4" />
-            <label for="radio4">Fourth Option danger</label>
-        </div>
-        <div class="funkyradio-warning">
-            <input type="radio" name="radio" id="radio5" />
-            <label for="radio5">Fifth Option warning</label>
-        </div>
-        <div class="funkyradio-info">
-            <input type="radio" name="radio" id="radio6" />
-            <label for="radio6">Sixth Option info</label>
-        </div>
-    </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+						<div class="radio radio-info radio-inline">
+							<input type="radio" id="inlineRadio1" value="Zor"
+								name="radioInline" checked=""> <label for="inlineRadio1">
+								Zor </label>
+						</div>
+						<div class="radio radio-info radio-inline">
+							<input type="radio" id="inlineRadio2" value="Orta"
+								name="radioInline"> <label for="inlineRadio2">
+								Orta </label>
+						</div>
+						<div class="radio radio-info radio-inline">
+							<input type="radio" id="inlineRadio3" value="Kolay"
+								name="radioInline"> <label for="inlineRadio3">
+								Kolay </label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sirala">
+				<label>Proje Sınıfı:</label>
+				<br />
+				<select name="sinif" th:value="${projeler.sinif}">
+					<option th:each="calisan : ${gorevler}" th:text="${projeler.sinif}"
+						th:value="${calisan}"></option>
+				</select>
+			</div>
+			<div class="sirala">
+				<input type="submit" class="btn btn-outline-primary"
+					value="Güncelle">
+			</div>
+		</form>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script
@@ -59,122 +75,154 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-		<style type="text/css">
-  	.btn{border-radius:0;}
-	.btn-info{border-top-left-radius:10px; border-top-right-radius:10px;}
-	.btn-success:hover{	color: #0C6;background-color: #FFF;}
-	.benimButonum{ background-color:#63F; border:1px solid #63F; border-radius:10px; color:#FFF; margin-top:50px;}
-	.benimButonum:hover{ background-color:#FFF; color:#63F;}
-	@import('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css') 
-
-.funkyradio div {
-  clear: both;
-  overflow: hidden;
+	<style type="text/css">
+.radio {
+	padding-left: 20px;
 }
 
-.funkyradio label {
-  width: 100%;
-  border-radius: 3px;
-  border: 1px solid #D1D3D4;
-  font-weight: normal;
+.btn-group {
+	margin-left: 200px;
+	margin-bottom: 100px;
 }
 
-.funkyradio input[type="radio"]:empty,
-.funkyradio input[type="checkbox"]:empty {
-  display: none;
+.radio label {
+	display: inline-block;
+	position: relative;
+	padding-left: 5px;
 }
 
-.funkyradio input[type="radio"]:empty ~ label,
-.funkyradio input[type="checkbox"]:empty ~ label {
-  position: relative;
-  line-height: 2.5em;
-  text-indent: 3.25em;
-  margin-top: 2em;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+.sirala {
+	float: left;
+	Margin-left: 20px;
 }
 
-.funkyradio input[type="radio"]:empty ~ label:before,
-.funkyradio input[type="checkbox"]:empty ~ label:before {
-  position: absolute;
-  display: block;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  content: '';
-  width: 2.5em;
-  background: #D1D3D4;
-  border-radius: 3px 0 0 3px;
+.radio label::before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	width: 17px;
+	height: 17px;
+	left: 0;
+	margin-left: -20px;
+	border: 1px solid #cccccc;
+	border-radius: 50%;
+	background-color: #fff;
+	-webkit-transition: border 0.15s ease-in-out;
+	-o-transition: border 0.15s ease-in-out;
+	transition: border 0.15s ease-in-out;
 }
 
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
-  color: #888;
+.radio label::after {
+	display: inline-block;
+	position: absolute;
+	content: " ";
+	width: 11px;
+	height: 11px;
+	left: 3px;
+	top: 3px;
+	margin-left: -20px;
+	border-radius: 50%;
+	background-color: #555555;
+	-webkit-transform: scale(0, 0);
+	-ms-transform: scale(0, 0);
+	-o-transform: scale(0, 0);
+	transform: scale(0, 0);
+	-webkit-transition: -webkit-transform 0.1s
+		cubic-bezier(0.8, -0.33, 0.2, 1.33);
+	-moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+	-o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+	transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
 }
 
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #C2C2C2;
+.radio input[type="radio"] {
+	opacity: 0;
 }
 
-.funkyradio input[type="radio"]:checked ~ label,
-.funkyradio input[type="checkbox"]:checked ~ label {
-  color: #777;
+.radio input[type="radio"]:focus+label::before {
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
 }
 
-.funkyradio input[type="radio"]:checked ~ label:before,
-.funkyradio input[type="checkbox"]:checked ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #333;
-  background-color: #ccc;
+.radio input[type="radio"]:checked+label::after {
+	-webkit-transform: scale(1, 1);
+	-ms-transform: scale(1, 1);
+	-o-transform: scale(1, 1);
+	transform: scale(1, 1);
 }
 
-.funkyradio input[type="radio"]:focus ~ label:before,
-.funkyradio input[type="checkbox"]:focus ~ label:before {
-  box-shadow: 0 0 0 3px #999;
+.radio input[type="radio"]:disabled+label {
+	opacity: 0.65;
 }
 
-.funkyradio-default input[type="radio"]:checked ~ label:before,
-.funkyradio-default input[type="checkbox"]:checked ~ label:before {
-  color: #333;
-  background-color: #ccc;
+.radio input[type="radio"]:disabled+label::before {
+	cursor: not-allowed;
 }
 
-.funkyradio-primary input[type="radio"]:checked ~ label:before,
-.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #337ab7;
+.radio.radio-inline {
+	margin-top: 0;
 }
 
-.funkyradio-success input[type="radio"]:checked ~ label:before,
-.funkyradio-success input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #5cb85c;
+.radio-primary input[type="radio"]+label::after {
+	background-color: #428bca;
 }
 
-.funkyradio-danger input[type="radio"]:checked ~ label:before,
-.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #d9534f;
+.radio-primary input[type="radio"]:checked+label::before {
+	border-color: #428bca;
 }
 
-.funkyradio-warning input[type="radio"]:checked ~ label:before,
-.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #f0ad4e;
+.radio-primary input[type="radio"]:checked+label::after {
+	background-color: #428bca;
 }
 
-.funkyradio-info input[type="radio"]:checked ~ label:before,
-.funkyradio-info input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #5bc0de;
+.radio-danger input[type="radio"]+label::after {
+	background-color: #d9534f;
 }
-  </style>
+
+.radio-danger input[type="radio"]:checked+label::before {
+	border-color: #d9534f;
+}
+
+.radio-danger input[type="radio"]:checked+label::after {
+	background-color: #d9534f;
+}
+
+.radio-info input[type="radio"]+label::after {
+	background-color: #5bc0de;
+}
+
+.radio-info input[type="radio"]:checked+label::before {
+	border-color: #5bc0de;
+}
+
+.radio-info input[type="radio"]:checked+label::after {
+	background-color: #5bc0de;
+}
+
+.radio-warning input[type="radio"]+label::after {
+	background-color: #f0ad4e;
+}
+
+.radio-warning input[type="radio"]:checked+label::before {
+	border-color: #f0ad4e;
+}
+
+.radio-warning input[type="radio"]:checked+label::after {
+	background-color: #f0ad4e;
+}
+
+.radio-success input[type="radio"]+label::after {
+	background-color: #5cb85c;
+}
+
+.radio-success input[type="radio"]:checked+label::before {
+	border-color: #5cb85c;
+}
+
+.radio-success input[type="radio"]:checked+label::after {
+	background-color: #5cb85c;
+}
+</style>
+
 </body>
 </html>

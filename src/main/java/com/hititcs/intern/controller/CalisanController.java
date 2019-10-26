@@ -1,11 +1,6 @@
 package com.hititcs.intern.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,21 +9,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.hititcs.intern.repository.ICalisanlar;
-import com.hititcs.intern.repository.IProje;
+import com.hititcs.intern.domain.Calisan;
+import com.hititcs.intern.service.CalisanService;
+
 
 @Controller
 public class CalisanController {
 
 	@Autowired
-	private ICalisanlar calisanlar;
-	@Autowired
-	private IProje proje;
+	private CalisanService calisanService;
+	
+	
 
 	@GetMapping("/formgoster")
 	public String main(Model model) {
-
-		model.addAttribute("calisanlar", calisanlar.listele());
+		model.addAttribute("calisanlar", calisanService.findAll());
 		return "welcome";
 	}
 
@@ -42,16 +37,17 @@ public class CalisanController {
 	@RequestMapping("/calisan-ekle")
 	public String getEkleSayfasi( HttpServletRequest request, Model model) {
 
-		@NotNull
 		String ad = request.getParameter("ad");
-		@NotNull
-		@Size(min=3, message="boş birakilamaz")
 		String soyad = request.getParameter("soyad");
-		@Email
 		String email = request.getParameter("email");
-
-		calisanlar.ekle(ad, soyad, email);
-		model.addAttribute("calisanlar", calisanlar.listele());
+		
+		Calisan calisan= new Calisan();
+		calisan.setAd(ad);
+		calisan.setSoyad(soyad);
+		calisan.setEmail(email);
+		calisanService.save(calisan);
+//		calisanlar.ekle(ad, soyad, email);
+		model.addAttribute("calisanlar", calisanService.findAll());
 		return "welcome";
 	}
 
@@ -60,9 +56,10 @@ public class CalisanController {
 
 		String id = request.getParameter("sil");
 		int idsi = Integer.parseInt(id);
-		calisanlar.sil(idsi);
+		calisanService.deleteById(idsi);
+//		calisanlar.sil(idsi);
 
-		model.addAttribute("calisanlar", calisanlar.listele());
+		model.addAttribute("calisanlar", calisanService.findAll());
 		return "welcome";
 	}
 
@@ -71,9 +68,10 @@ public class CalisanController {
 
 		String id = request.getParameter("id");
 		int idsi = Integer.parseInt(id);
-		Map<String, Object> getir = proje.getir(idsi);
+//		Map<String, Object> getir = proje.getir(idsi);
+		
 
-		model.addAttribute("calisan", getir);
+		model.addAttribute("calisan", calisanService.findAllById(idsi));
 
 		return "calisan-guncelle";
 
@@ -87,10 +85,13 @@ public class CalisanController {
 		String soyad = request.getParameter("soyad");
 		String email = request.getParameter("email");
 		int idsi = Integer.parseInt(id);
+		
+		Calisan calisan= new Calisan( idsi, ad, soyad, email);
+		calisanService.save(calisan);
+		
+//		calisanlar.guncelle(idsi, ad, soyad, email);
 
-		calisanlar.guncelle(idsi, ad, soyad, email);
-
-		model.addAttribute("calisanlar", calisanlar.listele());
+		model.addAttribute("calisanlar", calisanService.findAll());
 		return "welcome";
 
 	}
